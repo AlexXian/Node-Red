@@ -1,0 +1,83 @@
+[
+    {
+        "id": "818cd2d7.30613",
+        "type": "tab",
+        "label": "Flow 3"
+    },
+    {
+        "id": "f81bc2fa.8a92b",
+        "type": "inject",
+        "z": "818cd2d7.30613",
+        "name": "",
+        "topic": "",
+        "payload": "",
+        "payloadType": "date",
+        "repeat": "5",
+        "crontab": "",
+        "once": true,
+        "x": 230,
+        "y": 200,
+        "wires": [
+            [
+                "a5abb5d9.b4bdb8"
+            ]
+        ]
+    },
+    {
+        "id": "122d357f.738e1b",
+        "type": "http request",
+        "z": "818cd2d7.30613",
+        "name": "",
+        "method": "POST",
+        "ret": "txt",
+        "url": "https://api.mediatek.com/mcs/v2/devices/DgfInFoS/datapoints.csv",
+        "tls": "",
+        "x": 630,
+        "y": 200,
+        "wires": [
+            [
+                "99a0a7f5.aea548",
+                "350bbfcd.e4703"
+            ]
+        ]
+    },
+    {
+        "id": "99a0a7f5.aea548",
+        "type": "debug",
+        "z": "818cd2d7.30613",
+        "name": "",
+        "active": true,
+        "console": "false",
+        "complete": "payload",
+        "x": 848.3000335693359,
+        "y": 288.20001220703125,
+        "wires": []
+    },
+    {
+        "id": "a5abb5d9.b4bdb8",
+        "type": "function",
+        "z": "818cd2d7.30613",
+        "name": "Payload",
+        "func": "msg.headers={\n    deviceKey:\"8T0OieCBSOXvTPsa\"\n};\nmsg.payload=\"Temperature,,25.3\";\nreturn msg;",
+        "outputs": 1,
+        "noerr": 0,
+        "x": 440,
+        "y": 200,
+        "wires": [
+            [
+                "122d357f.738e1b"
+            ]
+        ]
+    },
+    {
+        "id": "350bbfcd.e4703",
+        "type": "http response",
+        "z": "818cd2d7.30613",
+        "name": "",
+        "statusCode": "",
+        "headers": {},
+        "x": 857.1000061035156,
+        "y": 140.1999969482422,
+        "wires": []
+    }
+]
